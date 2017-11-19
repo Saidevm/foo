@@ -11,7 +11,11 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             //foo create
+            //foo update in git3 web
+            //locsl branch
+
             //foo update in git33 web
+
         }
     }
 }
