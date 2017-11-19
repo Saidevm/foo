@@ -11,7 +11,7 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             //foo create
-            //foo update in git web
+            //foo update in git1 vs
         }
     }
 }
