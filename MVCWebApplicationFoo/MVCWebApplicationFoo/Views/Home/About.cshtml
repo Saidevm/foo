@@ -1,7 +1,31 @@
 ﻿@{
     ViewBag.Title = "About";
+    ViewBag.Message = "Also About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+you are using @Request.Browser.Browser
+
+@{
+    var dlist = new List<int> { 10, 20, 30 };
+}
+
+<ul>
+    @foreach (var item in dlist)
+    {
+        <li>@formatvalue(@item)</li>
+    }
+</ul>
+
+@*Help to add c# method *@
+@helper formatvalue(int val)
+{
+var col = "red";
+if (val > 20)
+{
+    col = "green";
+}
+    <span style="color:@col">@val</span>
+}
