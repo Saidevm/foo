@@ -8,6 +8,7 @@ namespace MVCWebApplicationFoo.Controllers
 {
     public class HomeController : Controller
     {
+        [LogFilter]
         public ActionResult Index()
         {
             return View();
@@ -23,10 +24,19 @@ namespace MVCWebApplicationFoo.Controllers
         //return partial view
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return PartialView();
+            ViewBag.Message = "Contract.";
+            
+            return View();
         }
+
+        [HttpPost]
+        public ActionResult Contact(string message)
+        {
+            ViewBag.Message = message;
+
+            return View();
+        }
+
 
         // return http status code result / content
         public ActionResult Serial(string lcase)
@@ -47,6 +57,12 @@ namespace MVCWebApplicationFoo.Controllers
         public ActionResult GetRoute()
         {
             return RedirectToAction("Index");
+        }
+
+        [HandleError(ExceptionType =typeof(StackOverflowException),View ="StackError")]
+        public ActionResult GetError()
+        {
+            throw new StackOverflowException();
         }
     }
 }
