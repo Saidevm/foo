@@ -8,7 +8,7 @@ namespace MVCWebApplicationFoo.Controllers
 {
     public class HomeController : Controller
     {
-        [LogFilter]
+        // [LogFilter]
         public ActionResult Index()
         {
             return View();
