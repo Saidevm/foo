@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,8 +16,13 @@ namespace MVCWebApplicationFoo.Models
         public int AccountNumber { get; set; }
 
         [Display(Name ="First Name")]
+        [MaxLength(20)]
+        [Column(TypeName = "varchar")]
         [Required]
+
         public string FirstName { get; set; }
+        [Column(TypeName = "varchar")]
+        [MaxLength(20)]
         public string LastName { get; set; }
 
         [DataType(DataType.Currency)]
