@@ -30,8 +30,8 @@ namespace MVCWebApplicationFoo
                 name: "Default", 
                 url: "{Controller}/{Action}", 
                 defaults: new {
-                    Controller = "Home",
-                    Action = "About"
+                    Controller = "CheckingAccount",
+                    Action = "Index"
                 });
         }
     }
