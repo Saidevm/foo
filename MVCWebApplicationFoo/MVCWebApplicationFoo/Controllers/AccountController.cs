@@ -155,6 +155,11 @@ namespace MVCWebApplicationFoo.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var ca = new CheckingAccount { Id=1, AccountNumber = model.AccountNumber, Balance = 0, FirstName = model.Name, ApplicationUserId = user.Id };
+                    var db = new ApplicationDbContext();
+                    db.CheckingAccounts.Add(ca);
+                    db.SaveChanges();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
