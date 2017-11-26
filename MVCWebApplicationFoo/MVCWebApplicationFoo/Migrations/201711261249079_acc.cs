@@ -3,7 +3,7 @@ namespace MVCWebApplicationFoo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class acc : DbMigration
     {
         public override void Up()
         {
@@ -13,8 +13,8 @@ namespace MVCWebApplicationFoo.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         AccountNumber = c.Int(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(),
+                        FirstName = c.String(nullable: false, maxLength: 20, unicode: false),
+                        LastName = c.String(maxLength: 20, unicode: false),
                         Balance = c.Decimal(nullable: false, precision: 18, scale: 2),
                         ApplicationUserId = c.String(maxLength: 128),
                     })
@@ -90,15 +90,29 @@ namespace MVCWebApplicationFoo.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
+            CreateTable(
+                "dbo.Transactions",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Deposit = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        CheckingAccountId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.CheckingAccounts", t => t.CheckingAccountId, cascadeDelete: true)
+                .Index(t => t.CheckingAccountId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Transactions", "CheckingAccountId", "dbo.CheckingAccounts");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.CheckingAccounts", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropIndex("dbo.Transactions", new[] { "CheckingAccountId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -106,6 +120,7 @@ namespace MVCWebApplicationFoo.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.CheckingAccounts", new[] { "ApplicationUserId" });
+            DropTable("dbo.Transactions");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");

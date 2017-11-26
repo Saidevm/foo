@@ -7,13 +7,13 @@ namespace MVCWebApplicationFoo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CheckinAccountChanges : IMigrationMetadata
+    public sealed partial class acc : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CheckinAccountChanges));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(acc));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711261141563_CheckinAccountChanges"; }
+            get { return "201711261249079_acc"; }
         }
         
         string IMigrationMetadata.Source

@@ -200,23 +200,22 @@
     <Compile Include="Controllers\CheckingAccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LogFilterAttribute.cs" />
-    <Compile Include="Migrations\201711260928119_InitialCreate.cs" />
-    <Compile Include="Migrations\201711260928119_InitialCreate.Designer.cs">
-      <DependentUpon>201711260928119_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711261141563_CheckinAccountChanges.cs" />
-    <Compile Include="Migrations\201711261141563_CheckinAccountChanges.Designer.cs">
-      <DependentUpon>201711261141563_CheckinAccountChanges.cs</DependentUpon>
+    <Compile Include="Migrations\201711261249079_acc.cs" />
+    <Compile Include="Migrations\201711261249079_acc.Designer.cs">
+      <DependentUpon>201711261249079_acc.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CheckingAccount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -284,6 +283,7 @@
     <Content Include="Views\Shared\StackError.cshtml" />
     <Content Include="Views\CheckingAccount\Index.cshtml" />
     <Content Include="Views\CheckingAccount\Create.cshtml" />
+    <Content Include="Views\Transaction\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,11 +300,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711260928119_InitialCreate.resx">
-      <DependentUpon>201711260928119_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711261141563_CheckinAccountChanges.resx">
-      <DependentUpon>201711261141563_CheckinAccountChanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711261249079_acc.resx">
+      <DependentUpon>201711261249079_acc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

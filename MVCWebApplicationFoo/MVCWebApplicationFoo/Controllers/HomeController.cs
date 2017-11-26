@@ -9,6 +9,7 @@ namespace MVCWebApplicationFoo.Controllers
     public class HomeController : Controller
     {
         // [LogFilter]
+        [Authorize]
         public ActionResult Index()
         {
             return View();

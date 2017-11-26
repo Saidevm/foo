@@ -151,11 +151,12 @@ namespace MVCWebApplicationFoo.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var ca = new CheckingAccount { Id=1, AccountNumber = model.AccountNumber, Balance = 0, FirstName = model.Name, ApplicationUserId = user.Id };
+                    var ca = new CheckingAccount {Id=1, AccountNumber = model.AccountNumber, Balance = 0, FirstName = model.Name, ApplicationUserId = user.Id };
                     var db = new ApplicationDbContext();
                     db.CheckingAccounts.Add(ca);
                     db.SaveChanges();
