@@ -24,7 +24,7 @@
         <a href="#" class="btn btn-block btn-primary btn-lg">
             <span class="glyphicon glyphicon-arrow-down">Withdraw</span>
         </a>
-        <a href="@Url.Action("Create","Transaction")" class="btn btn-block btn-primary btn-lg">
+        <a href="@Url.Action("Create","Transaction",new { CheckingAccountId = ViewBag.CheckingAccountId})" class="btn btn-block btn-primary btn-lg">
             <span class="glyphicon glyphicon-arrow-up">Deposit</span>
         </a>
     </div>

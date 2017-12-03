@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using MVCWebApplicationFoo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,14 @@ namespace MVCWebApplicationFoo.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         // [LogFilter]
         [Authorize]
         public ActionResult Index()
         {
+            var userid = User.Identity.GetUserId();
+            ViewBag.CheckingAccountId = db.CheckingAccounts.Where(s => s.ApplicationUserId == userid).First().Id; 
             return View();
         }
 

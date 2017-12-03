@@ -11,37 +11,38 @@ namespace MVCWebApplicationFoo.Controllers
     [Authorize]
     public class TransactionController : Controller
     {
-        
+
+        public TransactionController()
+        {
+            db = new ApplicationDbContext();
+        }
+
+        IApplicationDbContext db;
+        public TransactionController(IApplicationDbContext dbContext)
+        {
+            db = dbContext;
+        }
 
         // GET: Transaction/Create
-        public ActionResult Create()
+        public ActionResult Create(int CheckingAccountId)
         {
-            
             return View();
         }
 
         // POST: Transaction/Create
         [HttpPost]
-        public ActionResult Create(TransactionViewModel model)
+        public ActionResult Create(Transaction model)
         {
             try
             {
                 if (ModelState.IsValid)
-                {
-                    CheckingAccount acc;
-                    using (ApplicationDbContext db = new ApplicationDbContext())
-                    {
-                        string i = User.Identity.GetUserId();
-                        acc = db.CheckingAccounts.Where(s => s.ApplicationUserId == i).FirstOrDefault();
-
-                        var tr = new Transaction { CheckingAccountId = acc.Id, Deposit = model.Deposit };
-                        db.Transactions.Add(tr);
-                        db.SaveChanges();
-                    }
+                { 
+                    db.Transactions.Add(model);
+                    db.SaveChanges();
                 }
-                return RedirectToAction("Create");
+                return View();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
                 return View(model);
